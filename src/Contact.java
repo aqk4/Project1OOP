@@ -1,18 +1,6 @@
-/**
- This is the one sentence, descriptive summary, part of a doc comment.
- There can be more lines after the first one if necessary.
- ....
- @author Araika Khokhar, Pavan Machhi
- ...
- */
-
 public class Contact {
  private Department department;
  private String email;
-
- public enum Department {
-  CS, EE, ITI, MATH, BAIT;
- }
 
  // Constructor
  public Contact(Department department, String email) {
@@ -20,10 +8,15 @@ public class Contact {
   this.email = email;
  }
 
- // isValid method with correct curly braces
+ // isValid method
  public boolean isValid() {
+  // Check if department is valid
   boolean validDepartment = department != null;
-  boolean validEmail = email != null && email.endsWith("@rutgers.edu");
+
+  // Check if email is valid
+  boolean validEmail = email != null &&
+          (email.endsWith("@rutgers.edu") && email.startsWith(department.toString().toLowerCase()));
+
   return validDepartment && validEmail;
  }
 
