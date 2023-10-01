@@ -9,26 +9,36 @@ import java.text.DecimalFormat;
  */
 
 public enum Department {
-   CS("Computer Science"),
-   EE("Electrical Engineering"),
-   ITI("Information Technology and Informatics"),
-   MATH("Mathematics"),
-   BAIT("Business Analytics and Information Technology");
+   CS("Computer Science", "CS"),
+   EE("Electrical Engineering", "EE"),
+   ITI("Information Technology and Informatics", "ITI"),
+   MATH("Mathematics", "MATH"),
+   BAIT("Business Analytics and Information Technology", "BAIT");
 
-   private final String fullName;
+   private final String departmentName;
+   private final String acronym;
+
 
    /**
     * Constructs the full name of the Dept
     */
-  Department(String fullName) {
-      this.fullName = fullName;
+  Department(String departmentName, String acronym) {
+      this.departmentName = departmentName;
+      this.acronym = acronym;
+
    }
 
    /**
     * Returns the full name of the Dept
     * @return String fullName
     */
-   public String getFullName(){
-      return fullName;
+   public String getDeptName(){
+      return departmentName;
    }
+
+   public String getAcronym(){
+      return acronym;
+   }
+
+
 }

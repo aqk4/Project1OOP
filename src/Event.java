@@ -6,11 +6,11 @@ import java.text.DecimalFormat;
 /**
  * This class define the constants, constructors and methods of each event.
  *
- * @author Araika Khokhar, Pavan Machi
+ * @author Araika Khokhar, Pavan Machhi
  */
 
 public class Event implements Comparable<Event> {
-   private Calendar date; //the event date
+   private Date date; //the event date
    private Timeslot startTime; //the starting time
    private Location location;
    private Contact contact; //includes the department name and email
@@ -18,9 +18,10 @@ public class Event implements Comparable<Event> {
 
    /**
     * Constructor method for event
+    *
     * @param date, startTime, location, contact and duration for creating a valid Event
     */
-   public void Event(Calendar date, Timeslot startTime, Location location, Contact contact, int duration) {
+   public void Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) {
       this.date = date;
       this.startTime = startTime;
       this.location = location;
@@ -30,14 +31,16 @@ public class Event implements Comparable<Event> {
 
    /**
     * Getter method for date of Event
+    *
     * @return Date - date
     */
-   public Calendar getDate() {
+   public Date getDate() {
       return date;
    }
 
    /**
     * Getter method for startTime of Event
+    *
     * @return Timeslot - startTime
     */
    public Timeslot getStartTime() {
@@ -46,6 +49,7 @@ public class Event implements Comparable<Event> {
 
    /**
     * Getter method for location of Event
+    *
     * @return Location - location
     */
    public Location getLocation() {
@@ -54,6 +58,7 @@ public class Event implements Comparable<Event> {
 
    /**
     * Getter method for contact of Event
+    *
     * @return Contact - contact
     */
    public Contact getContact() {
@@ -62,6 +67,7 @@ public class Event implements Comparable<Event> {
 
    /**
     * Getter method for duration of Event
+    *
     * @return Int - duration
     */
    public int getDuration() {
@@ -70,6 +76,7 @@ public class Event implements Comparable<Event> {
 
    /**
     * Override method for toString method - converts Event to string
+    *
     * @return String of "date startTime location contact duration"
     */
    @Override
@@ -79,6 +86,7 @@ public class Event implements Comparable<Event> {
 
    /**
     * Override method for equals method - checks if Events are equal by checking if every parameter is equal
+    *
     * @return true if equal, false otherwise or for null objects/null classes of objects
     */
    @Override
@@ -97,6 +105,7 @@ public class Event implements Comparable<Event> {
 
    /**
     * Override method for compareTo method - compares the date first then time if needed
+    *
     * @return positive int if this.date (or time) > otherEvent.date (or time)
     * negative int if this.date (or time) < otherEvent.date (or time), zero if equal
     */
@@ -108,14 +117,29 @@ public class Event implements Comparable<Event> {
       int dateComparison = this.date.compareTo(otherEvent.date);
       if (dateComparison != 0) {
          return dateComparison;
-      } else {
-         // If dates are the same, compare start times.
-         return this.startTime.compareTo(otherEvent.startTime);
       }
+
+      int startTimeComparison = this.startTime.compareTo(otherEvent.startTime);
+      if (startTimeComparison != 0) {
+         return startTimeComparison;
+      }
+
+      int locationComparison = this.location.compareTo(otherEvent.location);
+      if (locationComparison != 0) {
+         return locationComparison;
+      }
+
+      int contactComparison = this.contact.getEmail().compareTo(otherEvent.contact.getEmail());
+      if (contactComparison != 0) {
+         return contactComparison;
+      }
+
+      return Integer.compare(this.duration, otherEvent.duration);
    }
 
    /**
     * Calculates End Time method - calculates the endTime of an Event based on startTime and duration
+    *
     * @param startTime as Timeslot and duration as int
     * @return String of endTime in the format 00:00am or 0:00am
     */
