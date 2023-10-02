@@ -1,3 +1,9 @@
+/*
+ This is Contact class which is the creates the Contact based on Department and email input.
+ @author Araika Khokhar, Pavan Machhi
+ */
+
+
 public class Contact {
  private Department department;
  private String email;

@@ -8,7 +8,7 @@
 
 public enum Timeslot {
  MORNING(10, 30),
- AFTERNOON(14, 0 ),
+ AFTERNOON(14, 0),
  EVENING(18, 30);
 
  private final int hour;
@@ -26,5 +26,7 @@ public enum Timeslot {
  public int getMinute() {
   return minute;
  }
+
+
 
 }

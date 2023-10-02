@@ -18,6 +18,11 @@ public class EventCalendar {
       numEvents = 0;
    }
 
+   //Getter methods
+   public int getNumEvents() {
+      return numEvents;
+   }
+
    //search an event in the list
    private int find(Event event) {
       for (int i = 0; i < numEvents; i++) {

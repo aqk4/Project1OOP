@@ -21,7 +21,7 @@ public class Event implements Comparable<Event> {
     *
     * @param date, startTime, location, contact and duration for creating a valid Event
     */
-   public void Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) {
+   public Event(Date date, Timeslot startTime, Location location, Contact contact, int duration) {
       this.date = date;
       this.startTime = startTime;
       this.location = location;
