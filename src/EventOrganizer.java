@@ -23,10 +23,10 @@ public class EventOrganizer {
  public void run() {
   while (isRunning) {
    System.out.print("Enter a command: ");
-   String commandLine = scanner.nextLine();
+   String commandLine = scanner.nextLine().toUpperCase();
    String[] tokens = commandLine.split("\\s+");
 
-   String command = tokens[0].toUpperCase();
+   String command = tokens[0];
    switch (command) {
     case "A":
      addEvent(tokens);
@@ -35,7 +35,7 @@ public class EventOrganizer {
      removeEvent(tokens);
      break;
     case "P":
-     printEvents();
+     eventCalendar.print();
      break;
     case "PE":
      eventCalendar.printByDate();
@@ -48,14 +48,27 @@ public class EventOrganizer {
      break;
     case "Q":
      isRunning = false;
-     System.out.println("Event Organizer terminated.");
      break;
     default:
      System.out.println(command + " is an invalid command!");
      break;
    }
   }
+
+  System.out.println("Event Organizer terminated.");
   scanner.close();
+ }
+
+ private void addEvent(String[] tokens) {
+  // Implement the logic to add an event to the EventCalendar.
+  // Parse tokens and create an Event object, then add it to eventCalendar.
+  // Handle error cases and display appropriate messages as needed.
+ }
+
+ private void removeEvent(String[] tokens) {
+  // Implement the logic to remove an event from the EventCalendar.
+  // Parse tokens and create an Event object, then remove it from eventCalendar.
+  // Handle error cases and display appropriate messages as needed.
  }
 }
 
