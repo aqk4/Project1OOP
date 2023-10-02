@@ -23,10 +23,10 @@ public class EventOrganizer {
  public void run() {
   while (isRunning) {
    System.out.print("Enter a command: ");
-   String commandLine = scanner.nextLine().toUpperCase();
+   String commandLine = scanner.nextLine();
    String[] tokens = commandLine.split("\\s+");
 
-   String command = tokens[0];
+   String command = tokens[0].toUpperCase();
    switch (command) {
     case "A":
      addEvent(tokens);
@@ -37,16 +37,27 @@ public class EventOrganizer {
     case "P":
      printEvents();
      break;
+    case "PE":
+     eventCalendar.printByDate();
+     break;
+    case "PC":
+     eventCalendar.printByCampus();
+     break;
+    case "PD":
+     eventCalendar.printByDepartment();
+     break;
     case "Q":
      isRunning = false;
+     System.out.println("Event Organizer terminated.");
      break;
     default:
-     System.out.println("Invalid command!");
+     System.out.println(command + " is an invalid command!");
      break;
    }
   }
-
-  System.out.println("Event Organizer terminated.");
   scanner.close();
  }
 }
+
+
+
