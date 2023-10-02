@@ -1,4 +1,4 @@
-/**
+/*
  * This an array-based implementation of a linear data structure to hold the list of events.
  * @author Araika Khokhar, Pavan Machhi
  */

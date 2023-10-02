@@ -1,4 +1,4 @@
-/**
+/*
  * This is the Date class which implements the Date, it's constructors and relevant methods (getter, isValid, compareTo)
  *
  * @author Araika Khokhar, Pavan Machhi
