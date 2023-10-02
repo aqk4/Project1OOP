@@ -1,12 +1,13 @@
 /**
  * This an array-based implementation of a linear data structure to hold the list of events.
- *
- * @author Araika Khokhar, Pavan Machi
+ * @author Araika Khokhar, Pavan Machhi
  */
 
 public class EventCalendar {
    private Event[] events; //the array holding the list of events
    private int numEvents; //current number of events in the array
+
+   //constants
    private static final int INTIAL_ARRAY = 4;
    private static final int GROWTH_FACTOR = 4;
    private static final int NOT_FOUND = -1;
@@ -67,12 +68,59 @@ public class EventCalendar {
    }
 
    public void printByDate() {
-   } //ordered by date and timeslot
+      sortbyDate();
+      print();
+   }
 
    public void printByCampus() {
-   } //ordered by campus and building/room
+      sortbyCampus();
+      print();
+   }
 
    public void printByDepartment() {
-   } //ordered by department
+      sortbyDepartment();
+      print();
+   }
+
+   public void sortbyDate() {
+      for(int i = 0 ; i < numEvents - 1; i++){
+         for(int j = 0; j < numEvents- i - 1; j++){
+            if(events[j].getDate().compareTo(events[j+1].getDate()) > 0){
+               Event temp = events[j];
+               events[j] = events[j+1];
+               events[j+1] = temp;
+            }
+         }
+      }
+   }
+
+   public void sortbyCampus() {
+      for(int i = 0 ; i < numEvents - 1; i++){
+         for(int j = 0; j < numEvents- i - 1; j++){
+            int campusCompare = events[j].getLocation().getCampus().compareTo(events[j+1].getLocation().getCampus());
+            int roomCompare = events[j].getLocation().getRoom().compareTo(events[j+1].getLocation().getRoom());
+            if(campusCompare > 0 || campusCompare == 0 && roomCompare > 0) {
+               Event temp = events[j];
+               events[j] = events[j + 1];
+               events[j + 1] = temp;
+            }
+         }
+      }
+   }
+
+   public void sortbyDepartment() {
+      for(int i = 0 ; i < numEvents - 1; i++){
+         for(int j = 0; j < numEvents- i - 1; j++){
+            if(events[j].getContact().getDepartment().compareTo(events[j+1].getContact().getDepartment()) > 0){
+               Event temp = events[j];
+               events[j] = events[j+1];
+               events[j+1] = temp;
+            }
+         }
+      }
+   }
+
+
+
 
 }
