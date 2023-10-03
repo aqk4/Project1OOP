@@ -87,35 +87,48 @@ public class Date implements Comparable<Date> {
     */
 
    @Override
-   public int compareTo(Date otherDate){
+   public int compareTo(Date otherDate) {
       int result = 0;
-      if(this.year != otherDate.year){
+      if (this.year != otherDate.year) {
          result = this.year - otherDate.year;
-         if(result > 0){
+         if (result > 0) {
             return 1;
          } else {
             return -1;
          }
       }
-      if(this.month != otherDate.month){
+      if (this.month != otherDate.month) {
          result = this.month - otherDate.month;
-         if(result > 0){
+         if (result > 0) {
             return 1;
          } else {
             return -1;
          }
       } else {
          result = this.day - otherDate.day;
-         if(result > 0){
+         if (result > 0) {
             return 1;
-         } if (result < 0){
-            return -1;
          }
-         else {
+         if (result < 0) {
+            return -1;
+         } else {
             return 0;
          }
       }
    }
+      //testing using the main method
+      public static void main(String[] args) {
+         // Test cases
+         Date date1 = new Date(-2023, 10, 10);
+         Date date2 = new Date(2023, 14, 14);
+         Date date3 = new Date(2023, 9, 4);
+         Date date4 = new Date(2023, 9, 9);
+         Date date5 = new Date(2020, 2, 2);
 
-
+         System.out.println("Test Case 1: " + date1.isValid());  // Expected: false
+         System.out.println("Test Case 2: " + date2.isValid());  // Expected: false
+         System.out.println("Test Case 3: " + date3.isValid());  // Expected: true
+         System.out.println("Test Case 4: " + date4.isValid());  // Expected: true
+         System.out.println("Test Case 5: " + date5.isValid());  // Expected: true
+      }
 }
