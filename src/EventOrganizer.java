@@ -1,6 +1,11 @@
-/*
- This is Event Organizer which is the user interface class to process the command line arguments.
- @author Araika Khokhar, Pavan Machhi
+/**
+ * This class represents the Event Organizer, a user interface class to process command line arguments
+ * and manage events in an event calendar.
+ *
+ * <p>The Event Organizer allows users to add, remove, and view events. It processes commands
+ * from the command line and performs corresponding actions on the event calendar.
+ *
+ * @author Araika Khokhar, Pavan Machhi
  */
 
 import java.util.Scanner;

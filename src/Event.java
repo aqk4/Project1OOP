@@ -97,10 +97,10 @@ public class Event implements Comparable<Event> {
 
       Event otherEvent = (Event) obj;
       return date.equals(otherEvent.date) &&
-            startTime == otherEvent.startTime &&
-            location == otherEvent.location &&
-            duration == otherEvent.duration &&
-            contact == otherEvent.contact;
+              startTime == otherEvent.startTime &&
+              location == otherEvent.location &&
+              duration == otherEvent.duration &&
+              contact == otherEvent.contact;
    }
 
    /**
@@ -160,5 +160,6 @@ public class Event implements Comparable<Event> {
       String returnedEndTime = endHr + ":" + endMin + amPm;
       return returnedEndTime;
    }
+
 
 }

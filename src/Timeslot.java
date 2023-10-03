@@ -1,9 +1,10 @@
 /**
- This is the one sentence, descriptive summary, part of a doc comment.
- There can be more lines after the first one if necessary.
- ....
- @author Araika Khokhar, Pavan Machi
- ...
+ * This enum represents different timeslots of the day, namely MORNING, AFTERNOON, and EVENING.
+ * Each timeslot has an associated hour and minute.
+ *
+ * <p>The enum provides constants for specific timeslots and their corresponding hours and minutes.
+ *
+ * @author Araika Khokhar, Pavan Machhi
  */
 
 public enum Timeslot {
