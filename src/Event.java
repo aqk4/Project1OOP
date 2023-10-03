@@ -81,9 +81,19 @@ public class Event implements Comparable<Event> {
     */
    @Override
    public String toString() {
-      return date + " " + startTime + " " + location + " " + contact + " " + duration;
-   }
+      //[Event Date: 10/21/2023] [Start: 2:00pm] [End: 3:00pm] @HLL114 (Hill Center, Busch) [Contact: Computer Science, cs@rutgers.edu]
+      int startHr = getStartTime().getHour();
+      if (startHr > 12) {
+         startHr -= 12;
+      }
 
+      String formattedStartMin = String.format("%02d", getStartTime().getMinute()); // Always 2 digits
+
+      return "[Event Date: " + getDate() + "]" +  " [Start: " + startHr + ":" +
+            formattedStartMin + getStartTime().getStartAmPm() + "]" + " [End: " + calculateEndTime(getStartTime(), getDuration()) + "] @"
+            + getLocation().getLocation() + " (" + getLocation().getRoom() + ", " + getLocation().getCampus() + ") "
+            + "[Contact: " + getContact().getDepartment().getDeptName() + ", " + getContact().getEmail() + "]";
+   }
    /**
     * Override method for equals method - checks if Events are equal by checking if every parameter is equal
     *
@@ -91,16 +101,16 @@ public class Event implements Comparable<Event> {
     */
    @Override
    public boolean equals(Object obj) {
-      if (obj == null || getClass() != obj.getClass()) {
-         return false;
-      }
-
       Event otherEvent = (Event) obj;
-      return date.equals(otherEvent.date) &&
-            startTime == otherEvent.startTime &&
-            location == otherEvent.location &&
-            duration == otherEvent.duration &&
-            contact == otherEvent.contact;
+      return (
+            date.compareTo(otherEvent.getDate()) == 0 &&
+            startTime.getHour() == (otherEvent.startTime.getHour()) &&
+            startTime.getMinute() == otherEvent.startTime.getMinute() &&
+            startTime.getStartAmPm()== otherEvent.startTime.getStartAmPm() &&
+            location.stringEquals(otherEvent.location) &&
+            duration == (otherEvent.duration) &&
+            contact.getEmail().equals(otherEvent.contact.getEmail()) &&
+            contact.getDepartment().getDeptName().equals(otherEvent.contact.getDepartment().getDeptName()));
    }
 
    /**
@@ -157,7 +167,10 @@ public class Event implements Comparable<Event> {
          endHr -= 12;
       }
 
-      String returnedEndTime = endHr + ":" + endMin + amPm;
+      //formatted endMin
+      String formattedEndMin = String.format("%02d", endMin); // Always 2 digits
+
+      String returnedEndTime = endHr + ":" + formattedEndMin + amPm;
       return returnedEndTime;
    }
 

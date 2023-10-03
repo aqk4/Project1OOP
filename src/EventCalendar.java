@@ -1,3 +1,4 @@
+import java.util.Calendar;
 /**
  * This an array-based implementation of a linear data structure to hold the list of events.
  * @author Araika Khokhar, Pavan Machhi
@@ -12,18 +13,29 @@ public class EventCalendar {
    private static final int GROWTH_FACTOR = 4;
    private static final int NOT_FOUND = -1;
 
-   //Constructor
+   /**
+    * Constructor method for Events Calendar
+    *
+    */
    public EventCalendar() {
       events = new Event[INTIAL_ARRAY];
       numEvents = 0;
    }
 
-   //Getter methods
+   /**
+    * Getter method for Events Calendar
+    *
+    */
    public int getNumEvents() {
       return numEvents;
    }
 
-   //search an event in the list
+   /**
+    * Searches for an event in a Calendar
+    *
+    * @param Event you're searching for
+    * @return int = index if found, -1 otherwise
+    */
    private int find(Event event) {
       for (int i = 0; i < numEvents; i++) {
          if (events[i].equals(event)) {
@@ -33,13 +45,23 @@ public class EventCalendar {
       return NOT_FOUND;
    }
 
-   //increase the capacity by 4
+
+   /**
+    * Increases the capacity of Events Calendar by 4f
+    *
+    */
    private void grow() {
       Event[] newEvents = new Event[events.length + GROWTH_FACTOR];
       System.arraycopy(events,0, newEvents, 0, numEvents);
       events = newEvents;
    }
 
+   /**
+    * Adds an event in a Calendar, checks if the Event needs to grow first
+    *
+    * @param Event you're adding
+    * @return true if added, false otherwise
+    */
    public boolean add(Event event) {
       if(numEvents == events.length){
          grow();
@@ -49,6 +71,12 @@ public class EventCalendar {
       return true;
    }
 
+   /**
+    * Removes an event in a Calendar, checks if the Event is in Calendar first
+    *
+    * @param Event you're removing
+    * @return true if removed, false otherwise
+    */
    public boolean remove(Event event) {
       int index = find(event);
       if(index != NOT_FOUND){
@@ -62,30 +90,62 @@ public class EventCalendar {
       return false;
    }
 
+   /**
+    * Checks if the Event is in Calendar
+    *
+    * @param Event you're checking
+    * @return true if there, false otherwise
+    */
+
    public boolean contains(Event event) {
       return find(event) != NOT_FOUND;
    }
 
+   /**
+    * Prints the events in a Calendar
+    *
+    */
    public void print() {
       for(int i = 0; i < numEvents; i++){
          System.out.println(events[i]);
       }
    }
 
+
+   /**
+    * Prints the events in a Calendar sorted by Date
+    *
+    */
    public void printByDate() {
       sortbyDate();
       print();
    }
 
+
+   /**
+    * Prints the events in a Calendar sorted by Campus
+    *
+    */
    public void printByCampus() {
       sortbyCampus();
       print();
    }
 
+
+   /**
+    * Prints the events in a Calendar sorted by Department
+    *
+    */
    public void printByDepartment() {
       sortbyDepartment();
       print();
    }
+
+
+   /**
+    * Sorts the events in a Calendar by date
+    *
+    */
 
    public void sortbyDate() {
       for(int i = 0 ; i < numEvents - 1; i++){
@@ -98,6 +158,12 @@ public class EventCalendar {
          }
       }
    }
+
+
+   /**
+    * Sorts the events in a Calendar by Campus
+    *
+    */
 
    public void sortbyCampus() {
       for(int i = 0 ; i < numEvents - 1; i++){
@@ -113,6 +179,11 @@ public class EventCalendar {
       }
    }
 
+
+   /**
+    * Sorts the events in a Calendar by Department
+    *
+    */
    public void sortbyDepartment() {
       for(int i = 0 ; i < numEvents - 1; i++){
          for(int j = 0; j < numEvents- i - 1; j++){

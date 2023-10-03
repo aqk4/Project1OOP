@@ -3,18 +3,24 @@
  @author Araika Khokhar, Pavan Machhi
  */
 
-
 public class Contact {
  private Department department;
  private String email;
 
- // Constructor
+ /**
+  * Constructor method for Contact
+  *
+  * @ param Department department, String email
+  */
  public Contact(Department department, String email) {
   this.department = department;
   this.email = email;
  }
 
- //getter method
+ /**
+  * Getter methods for constructor variable
+  *
+  */
  public Department getDepartment(){
   return department;
  }
@@ -25,7 +31,11 @@ public class Contact {
 
 
 
- // isValid method
+ /**
+  * isValid method for Contacts - checks if contact info provided is sufficient to make a contact
+  *
+  * @return true if valid, false otherwise
+  */
  public boolean isValid() {
   // Check if department is valid
   boolean validDepartment = department != null;

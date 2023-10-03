@@ -1,32 +1,38 @@
 /**
- This is the one sentence, descriptive summary, part of a doc comment.
- There can be more lines after the first one if necessary.
- ....
- @author Araika Khokhar, Pavan Machi
- ...
+ This is Timeslot enum class
+ @author Araika Khokhar, Pavan Machhi
  */
 
 public enum Timeslot {
- MORNING(10, 30),
- AFTERNOON(14, 0),
- EVENING(18, 30);
+ MORNING(10, 30, "am"),
+ AFTERNOON(14, 0,  "pm"),
+ EVENING(18, 30, "pm");
 
  private final int hour;
  private final int minute;
+ private final String startAmPm;
 
- Timeslot(int hour, int minute) {
+ Timeslot(int hour, int minute, String startAmPm) {
   this.hour = hour;
   this.minute = minute;
+  this.startAmPm = startAmPm;
  }
 
- public int getHour() {
-  return hour;
+ /**
+  * Getter method for constructor variables
+  *
+  */
+ public int getHour() {return hour;
  }
-
  public int getMinute() {
   return minute;
  }
 
+ public String getStartAmPm(){
+  return startAmPm;
+ }
+
+ }
 
 
-}
+

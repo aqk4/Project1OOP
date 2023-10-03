@@ -27,6 +27,18 @@ public class Date implements Comparable<Date> {
       this.day = day;
    }
 
+   /**
+    * Getter methods for Dates
+    *
+    */
+   public int getYear() {return year;
+   }
+
+   public int getMonth() {
+      return month;
+   }
+
+   public int getDay(){ return day; }
 
 
    /**
@@ -87,35 +99,64 @@ public class Date implements Comparable<Date> {
     */
 
    @Override
-   public int compareTo(Date otherDate){
-      int result = 0;
-      if(this.year != otherDate.year){
-         result = this.year - otherDate.year;
-         if(result > 0){
-            return 1;
-         } else {
-            return -1;
+      public int compareTo(Date otherDate) {
+         if (this.year != otherDate.year) {
+            return Integer.compare(this.year, otherDate.year);
          }
+         if (this.month != otherDate.month) {
+            return Integer.compare(this.month, otherDate.month);
+         }
+         return Integer.compare(this.day, otherDate.day);
       }
-      if(this.month != otherDate.month){
-         result = this.month - otherDate.month;
-         if(result > 0){
-            return 1;
-         } else {
-            return -1;
-         }
-      } else {
-         result = this.day - otherDate.day;
-         if(result > 0){
-            return 1;
-         } if (result < 0){
-            return -1;
-         }
-         else {
-            return 0;
-         }
-      }
+
+   /**
+    * Override method for toString method - constructs the string as 1/1/1111 format
+    *
+    * @return String
+    */
+
+   @Override
+   public String toString() {
+      return getMonth() + "/" + getDay() + "/" + getYear();
    }
 
+   /**
+    * Calculates the month difference method for 2 dates
+    * @return int difference in months
+    */
+   public int calculateMonthDifference(Date otherDate) {
+      int monthsInYear = 12;  // Total number of months in a year
+
+      int yearDiff = otherDate.getYear() - this.getYear();
+      int monthDiff = Math.abs(otherDate.getMonth() - this.getMonth());
+
+      // Calculate the difference as if it's a circular clock
+      int circularDifference = (yearDiff * monthsInYear + monthDiff) % monthsInYear;
+
+      // Ensure the circular difference is non-negative
+      if (circularDifference < 0) {
+         circularDifference += monthsInYear;
+      }
+
+      return circularDifference;
+   }
+
+   /**
+    * TestBed for main method
+    */
+   public static void main(String[] args) {
+      // Test cases
+      Date date1 = new Date(-2023, 10, 10);
+      Date date2 = new Date(2023, 14, 14);
+      Date date3 = new Date(2023, 9, 4);
+      Date date4 = new Date(2023, 9, 9);
+      Date date5 = new Date(2020, 2, 2);
+
+      System.out.println("Test Case 1: " + date1.isValid());  // Expected: false
+      System.out.println("Test Case 2: " + date2.isValid());  // Expected: false
+      System.out.println("Test Case 3: " + date3.isValid());  // Expected: true
+      System.out.println("Test Case 4: " + date4.isValid());  // Expected: true
+      System.out.println("Test Case 5: " + date5.isValid());  // Expected: true
+   }
 
 }
